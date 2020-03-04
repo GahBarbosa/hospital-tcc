@@ -1,0 +1,19 @@
+body {
+    font-family: arial, sans-serif;
+}
+
+table {
+    border-collapse: collapse;
+}
+
+td, th {
+    text-align: center;
+}
+
+.title {
+    background-color:#dddddd;  
+}
+
+.tags {
+    background-color:#ffffff;  
+}

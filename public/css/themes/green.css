@@ -1,0 +1,98 @@
+/* Navbar */
+.navbar{
+	background-color: #388E3C;
+}
+.navbar-brand{
+	background: none;
+}
+.sidebar .nav-link.active{
+	color:#388E3C;
+}
+.sidebar-nav li a:hover{
+  background: #388E3C;
+}
+
+/* Table */
+.table thead th{
+  background: #388E3C;
+  color: #fff;
+}
+
+/* Cards */
+.card-info .card:hover{
+	background: #388E3C;
+}
+
+/* Sidebar */
+.sidebar .nav-link.active {
+  color: #388E3C;
+}
+
+/* Plugins - FastSelect */
+.fstChoiceItem {
+	border: 1px solid #388E3C;
+	background-color: #388E3C;
+}
+.fstResultItem.fstFocused {
+	background-color: #388E3C; 
+}
+.fstResultItem.fstSelected {
+	background-color: #1B5E20;
+}
+
+/* Buttons */
+.btn-custom { 
+  color: #ffffff; 
+  background-color: #388E3C; 
+  border-color: #388E3C; 
+} 
+ 
+.btn-custom:hover, 
+.btn-custom:focus, 
+.btn-custom:active, 
+.btn-custom.active, 
+.open .dropdown-toggle.btn-custom { 
+  color: #ffffff; 
+  background-color: #388E3C; 
+  border-color: #388E3C; 
+} 
+ 
+.btn-custom:active, 
+.btn-custom.active, 
+.open .dropdown-toggle.btn-custom { 
+  background-image: none; 
+} 
+ 
+.btn-custom.disabled, 
+.btn-custom[disabled], 
+fieldset[disabled] .btn-custom, 
+.btn-custom.disabled:hover, 
+.btn-custom[disabled]:hover, 
+fieldset[disabled] .btn-custom:hover, 
+.btn-custom.disabled:focus, 
+.btn-custom[disabled]:focus, 
+fieldset[disabled] .btn-custom:focus, 
+.btn-custom.disabled:active, 
+.btn-custom[disabled]:active, 
+fieldset[disabled] .btn-custom:active, 
+.btn-custom.disabled.active, 
+.btn-custom[disabled].active, 
+fieldset[disabled] .btn-custom.active { 
+  background-color: #388E3C; 
+  border-color: #388E3C; 
+} 
+ 
+.btn-custom .badge { 
+  color: #388E3C; 
+  background-color: #ffffff; 
+}
+
+/* Switch Button*/
+input:checked + .slider {
+  background-color: #388E3C;
+}
+
+/* Radio Button*/
+.container input:checked ~ .checkmark {
+  background-color: #388E3C;
+}
