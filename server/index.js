@@ -4,6 +4,7 @@ const passport = require('passport');
 const body_parser = require("body-parser");
 const cors = require('cors');
 const session = require('express-session');
+const nodemailer = require('nodemailer');
 
 const app = express();
 app.use(cors())
@@ -134,11 +135,40 @@ app.post("/instituicao/:id", function(req,res){
     }).then(response=>res.send(JSON.stringify(response)))
 })
 
-app.post('/esqueciSenha:email',function(req,res){
+app.post('/esqueciSenha',function(req,res){
     Instituicoes.findOne({
         where:{
-            email:req.params.email
-        }.then(response)
-    })
+            email:req.body.email}
+        }).then(response =>{
+            if(response  == null){
+                res.send(JSON.stringify("email invalido"))
+            } else{
+            let transporter= nodemailer.createTransport({
+                service: 'gmail',
+                auth: {
+                  user: 'tccbancodesangue@gmail.com',
+                  pass: 'sccp1910'
+                }
+              });
+              
+              var mailOptions = {
+                from: 'tccbancodesangue@gmail.com',
+                to: String(response.email),
+                subject: 'Recuperação de senha - Banco de Sangue',
+                text: 'Olá, '+response.responsavel+'\n\nSua senha do sistema de banco de sangue é: '+response.senha+'\n\n Você pode efetuar seu login e alterar sua senha caso necessário\n\n Atenciosamente,\n Projeto Rubi'
+              };
+              transporter.sendMail(mailOptions, function(error, info){
+                if (error) {
+                  console.log(error);
+                } else {
+                  console.log('Email sent: ' + info.response);
+                  res.send(JSON.stringify(info.response))
+                }
+              });
+            }
+            })
 })
 app.listen(5000);
+
+
+

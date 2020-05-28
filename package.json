@@ -8,6 +8,7 @@
     "moment": "2.24.0",
     "mysql2": "^2.1.0",
     "node-sass": "^4.14.1",
+    "nodemailer": "^6.4.6",
     "nouislider": "14.0.2",
     "passport": "^0.4.1",
     "react": "16.8.6",
