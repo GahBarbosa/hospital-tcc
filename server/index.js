@@ -62,6 +62,7 @@ app.post('/cadastrar', function (req, res) {
                 responsavel: req.body.responsavel,
                 email: req.body.email,
                 telefone: req.body.telefone,
+                cnpj:req.body.cnpj,
                 endereco: req.body.endereco,
                 numero_endereco: req.body.numero_endereco,
                 CEP: req.body.cep,
@@ -83,6 +84,7 @@ app.post('/alterarInstituicao/:id', function (req, res) {
         responsavel: req.body.responsavel,
         email: req.body.email,
         telefone: req.body.telefone,
+        cnpj:req.body.cnpj,
         usuario: req.body.usuario,
         senha: req.body.senha
     }, {

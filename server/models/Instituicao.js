@@ -14,6 +14,8 @@ const Instituicoes = db.sequelize.define('instituicoes', {
     },
     email: {
         type: db.Sequelize.STRING,
+    }, cnpj: {
+        type: db.Sequelize.STRING,
     },
     telefone: {
         type: db.Sequelize.STRING,
