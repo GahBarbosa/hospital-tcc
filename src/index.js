@@ -13,6 +13,7 @@ import Login from "views/Login.js";
 import MasterForm from "views/MasterForm.js";
 import Hospital from "views/GerenciamentoHospital.js";
 import ResultadoFormulario from "views/ResultadoFormulario.js";
+import Faq from "views/Faq.js";
 
 ReactDOM.render(
   <BrowserRouter>
@@ -41,6 +42,11 @@ ReactDOM.render(
         <Route 
           path="/resultado" 
           render={props => <ResultadoFormulario {...props} />} 
+        />
+
+        <Route 
+          path="/faq" 
+          render={props => <Faq {...props} />} 
         />
 
         <Redirect to="/index" />
