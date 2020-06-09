@@ -24,7 +24,7 @@ class User extends React.Component {
           referencia:'asd',
           senha:  '',
           confirmaSenha:'',
-          id:'asd'
+          id:''
         }
     }
 

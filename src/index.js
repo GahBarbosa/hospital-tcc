@@ -14,6 +14,8 @@ import MasterForm from "views/MasterForm.js";
 import Hospital from "views/GerenciamentoHospital.js";
 import ResultadoFormulario from "views/ResultadoFormulario.js";
 import Faq from "views/Faq.js";
+import Cep from "views/Cep.js";
+import Mapa from "views/Maps.js";
 
 ReactDOM.render(
   <BrowserRouter>
@@ -47,6 +49,16 @@ ReactDOM.render(
         <Route 
           path="/faq" 
           render={props => <Faq {...props} />} 
+        />
+        
+        <Route 
+          path="/cep" 
+          render={props => <Cep {...props} />} 
+        />
+
+        <Route 
+          path="/mapa" 
+          render={props => <Mapa {...props} />} 
         />
 
         <Redirect to="/index" />
