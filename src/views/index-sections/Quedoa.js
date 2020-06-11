@@ -26,8 +26,8 @@ function Quedoa() {
             <Col className="text-center" lg="8" md="12">
               <Button
                 className="btn-round mr-1"
-                color="info"
-                href=""
+                color="danger"
+                href="/cep"
                 role="button"
                 size="lg"
               >

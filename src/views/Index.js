@@ -3,7 +3,7 @@ import React from "react";
 // components
 import IndexNavbar from "components/Navbars/IndexNavbar.js";
 import IndexHeader from "components/Headers/IndexHeader.js";
-// import DarkFooter from "components/Footers/DarkFooter.js";
+import DarkFooter from "components/Footers/DarkFooter.js";
 
 // sections 
 import Texto from "./index-sections/Texto.js";
@@ -34,7 +34,7 @@ function Index() {
           <Texto />
           <Quedoa />
           <CadastrarHospital />
-          {/* <DarkFooter /> */}
+          <DarkFooter />
         </div>
       </div>
     </>

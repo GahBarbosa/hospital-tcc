@@ -7,6 +7,8 @@ import {
   CardBody,
   Collapse,
   Button,
+  Container,
+  Col
 } from "reactstrap";
 
 function Faq() {
@@ -25,6 +27,8 @@ function Faq() {
     <br></br>
     <br></br>
     <br></br>
+    <Container>
+      <Col style={{textAlign:"center"}}>
     <div className="wrapper">
       <div id="acordeon">
         <div aria-multiselectable={true} id="accordion" role="tablist">
@@ -144,6 +148,7 @@ function Faq() {
 
           
           </Card>
+          <br></br>
         </div>
 
             {/* Segundo Card */}
@@ -240,6 +245,8 @@ function Faq() {
             </Collapse>
 
           </Card>
+          <br></br>
+
         </div>
 
         {/* Terceiro Card */}
@@ -410,6 +417,8 @@ function Faq() {
             </Collapse>
         
             </Card>
+          <br></br>
+
         </div>        
 
         {/* Quarto Card */}
@@ -510,6 +519,8 @@ function Faq() {
               </CardBody>
             </Collapse>
             </Card>
+          <br></br>
+
         </div>        
 
         {/* Quinto Card */}
@@ -587,9 +598,13 @@ function Faq() {
             </Collapse>
 
             </Card>
+          <br></br>
+
         </div>   
       </div>
       </div>
+      </Col>
+      </Container>
     </>
   );
 }

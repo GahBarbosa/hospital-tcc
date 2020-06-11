@@ -1,5 +1,9 @@
 import React from "react";
 import { Redirect } from "react-router-dom";
+import { Container, Row, Col } from "reactstrap";
+
+import { alertService } from '../components/Alert/Services';
+import { Alert } from '../components/Alert';
 // components
 const style = {
     width: '100%',
@@ -16,9 +20,24 @@ class IndexMaps extends React.Component {
         lng:'0',
         endereco:'',
         cidade:'',
+        nome:'',
         }
     }
     
+    componentDidMount(){
+      if(typeof(this.props.location.state) !== 'undefined'){
+        this.setState({
+          nome:this.props.location.state.nome,
+        })
+        let autoClose = true;
+        let keepAfterRouteChange  = true;
+        alertService.success('Você está apto a doar sangue, Parabéns!!', { autoClose, keepAfterRouteChange })
+        console.log('chefou')
+      } 
+    }
+
+  
+
 
   handleChange = event => {
     const {name, value} = event.target
@@ -43,9 +62,8 @@ class IndexMaps extends React.Component {
               lng3: -46.68984529999999,
               lat4: -23.5529814,
               lng4: -46.6406297,
-              lat5: -23.5078995,
-              lng5: -46.58795139999999,
-              lat6: -23.5078995,
+              lat5: '',
+              lng5: '',
               lng6: -46.58795139999999,
               lat7: -23.5078995,
               lng7: -46.58795139999999,
@@ -92,30 +110,42 @@ class IndexMaps extends React.Component {
   render() {
     return (
         <>
-        <div>
+        <Container className={style.all}>
+        <Row>
+        <Col className="col-sm-9 col-md-7 col-lg-5 mx-auto">
+        <div className="card card-signin my-5">
+        <div className="card-body">
         {this.renderRedirect()}
-            <input 
-                type="text" 
-                id="cep" 
-                name="cep"
-                placeholder="digite seu cep"
-                onChange={this.handleChange}
-            />
-            <input 
-                type="text" 
-                name="numero"
-                id="numero" 
-                placeholder="digite o número"
-                onChange={this.handleChange}
-            />
-            <input 
-                type="button"
-                value="buscar"
-                onClick={this.buscar}
-            />
+     
+        <Alert />
+        <br></br>
+        <input 
+            type="text" 
+            id="cep" 
+            name="cep"
+            placeholder="digite seu cep"
+            onChange={this.handleChange}
+        />
+        <br></br>
+        <input 
+            type="text" 
+            name="numero"
+            id="numero" 
+            placeholder="digite o número"
+            onChange={this.handleChange}
+        />
+          <br></br>
+        <input 
+            type="button"
+            value="buscar"
+            onClick={this.buscar}
+        />
              
-            <br /><br /><br /><br />
-        </div>
+          </div>
+          </div>
+          </Col>
+          </Row>
+          </Container>
     </>
     );
     }

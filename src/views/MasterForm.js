@@ -1,6 +1,7 @@
 import React from 'react';
-import { Container} from "reactstrap";
+import { Container, Row, Col } from "reactstrap";
 import { Redirect } from "react-router-dom";
+import style from '../assets/css/style.css';
 
 class MasterForm extends React.Component {
   constructor(props) {
@@ -34,33 +35,43 @@ class MasterForm extends React.Component {
 
   renderRedirect = () => {
     if (this.state.redirect) {  
-      return <Redirect to={{
-          pathname: '/resultado',
-          state: {nome: this.state.nome, nivelfinal: this.state.nivelfinal}
-      }} />
+      if(this.state.nivelfinal == 0) {
+        return <Redirect to={{
+          pathname: '/cep',
+          state: {nome: this.state.nome}
+          }} />
+      } else {
+        return <Redirect to={{
+        pathname: '/resultado',
+        state: {nome: this.state.nome, nivelfinal: this.state.nivelfinal}
+        }} />
+      }
     }
     
 }
 
   handleSubmit = event => {
     event.preventDefault()
-    if(this.state.permanente){
+    if(this.state.permanente == true){
       this.setState({nivelfinal:6,redirect:true})
     }
-     else if(this.state.peso){
+     else if(this.state.peso == true){
       this.setState({nivelfinal:5,redirect:true})
     }
-     else if(this.state.nivel4_1 || this.state.nivel4_2 || this.state.nivel4_3 || this.state.nivel4_4){
+     else if(this.state.nivel4_1 == true || this.state.nivel4_2  == true|| this.state.nivel4_3 == true || this.state.nivel4_4 == true){
       this.setState({nivelfinal:4,redirect:true})
     } 
-    else if(this.state.nivel3_1 || this.state.nivel3_2){
+    else if(this.state.nivel3_1  == true|| this.state.nivel3_2 == true){
       this.setState({nivelfinal:3,redirect:true})
     } 
-    else if(this.state.nivel2_1 || this.state.nivel2_2){
+    else if(this.state.nivel2_1  == true|| this.state.nivel2_2 == true){
       this.setState({nivelfinal:2,redirect:true})
     }
-    else if(this.state.nivel1){
+    else if(this.state.nivel1 == true){
       this.setState({nivelfinal:1,redirect:true})
+    }
+    else {
+      this.setState({nivelfinal:0,redirect:true})
     }
   }
 
@@ -112,7 +123,11 @@ nextButton(){
     return (
     <>
     <div className="section">
-    <Container >
+    <Container className={style.all}>
+    <Row>
+    <Col className="col-sm-9 col-md-7 col-lg-5 mx-auto">
+    <div className="card card-signin my-5">
+    <div className="card-body">
     {this.renderRedirect()}
       <h3>Olá, {this.state.nome} </h3>
 
@@ -200,6 +215,10 @@ nextButton(){
         {this.nextButton()}
 
       </form>
+    </div>
+    </div>
+    </Col>
+            </Row>
     </Container>
     </div>
     </>
@@ -452,7 +471,7 @@ function Definitivos(props) {
         <li><input type="radio" onClick={props.handleChange} name="permanente" id="" value="true"/></li>
       </ul>
     </div>
-    <button className="btn btn-success btn-block">Sign up</button>
+    <button className="btn btn-success btn-block" >Sign up</button>
     </React.Fragment>
   );
 }
