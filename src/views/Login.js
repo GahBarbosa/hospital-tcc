@@ -1,8 +1,7 @@
 import React from 'react';
-import { Container, Row, Col } from "reactstrap";
+import {Button, Container, Row, Col } from "reactstrap";
 import style from '../assets/css/style.css';
 import { Redirect } from "react-router-dom";
-
 import { alertService } from '../components/Alert/Services';
 import { Alert } from '../components/Alert';
 
@@ -128,6 +127,11 @@ class User extends React.Component {
         return (
             <Container className={style.all}>
                   {this.renderRedirect()}
+            <Button className="btn-round" color="primary" outline>
+                <a href="/">
+                    <i class="fas fa-arrow-left"></i>
+                </a>
+            </Button>
             <Row>
             <Col className="col-sm-9 col-md-7 col-lg-5 mx-auto">
             <div className="card card-signin my-5">

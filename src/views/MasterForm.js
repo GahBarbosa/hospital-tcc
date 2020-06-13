@@ -35,7 +35,7 @@ class MasterForm extends React.Component {
 
   renderRedirect = () => {
     if (this.state.redirect) {  
-      if(this.state.nivelfinal == 0) {
+      if(this.state.nivelfinal === 0) {
         return <Redirect to={{
           pathname: '/cep',
           state: {nome: this.state.nome}
@@ -52,22 +52,22 @@ class MasterForm extends React.Component {
 
   handleSubmit = event => {
     event.preventDefault()
-    if(this.state.permanente == true){
+    if(this.state.permanente === true){
       this.setState({nivelfinal:6,redirect:true})
     }
-     else if(this.state.peso == true){
+     else if(this.state.peso === true){
       this.setState({nivelfinal:5,redirect:true})
     }
-     else if(this.state.nivel4_1 == true || this.state.nivel4_2  == true|| this.state.nivel4_3 == true || this.state.nivel4_4 == true){
+     else if(this.state.nivel4_1 === true || this.state.nivel4_2  === true|| this.state.nivel4_3 === true || this.state.nivel4_4 === true){
       this.setState({nivelfinal:4,redirect:true})
     } 
-    else if(this.state.nivel3_1  == true|| this.state.nivel3_2 == true){
+    else if(this.state.nivel3_1  === true|| this.state.nivel3_2 === true){
       this.setState({nivelfinal:3,redirect:true})
     } 
-    else if(this.state.nivel2_1  == true|| this.state.nivel2_2 == true){
+    else if(this.state.nivel2_1  === true|| this.state.nivel2_2 === true){
       this.setState({nivelfinal:2,redirect:true})
     }
-    else if(this.state.nivel1 == true){
+    else if(this.state.nivel1 === true){
       this.setState({nivelfinal:1,redirect:true})
     }
     else {

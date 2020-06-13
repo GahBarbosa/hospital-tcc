@@ -1,14 +1,14 @@
 import React from "react";
 import { Redirect } from "react-router-dom";
 import { Container, Row, Col } from "reactstrap";
-
+import style from '../assets/css/style.css';
 import { alertService } from '../components/Alert/Services';
 import { Alert } from '../components/Alert';
 // components
-const style = {
-    width: '100%',
-    height: '100%'
-  }
+// const style = {
+//     width: '100%',
+//     height: '100%'
+//   }
 class IndexMaps extends React.Component {
     constructor(props) {
       super(props)
@@ -56,21 +56,31 @@ class IndexMaps extends React.Component {
               lng:this.state.lng,
               lat1: -23.5078995,
               lng1: -46.58795139999999,
+
               lat2: -23.5102,
               lng2: -46.5163717,
+
               lat3: -23.5958894,
               lng3: -46.68984529999999,
+
               lat4: -23.5529814,
               lng4: -46.6406297,
-              lat5: '',
-              lng5: '',
-              lng6: -46.58795139999999,
+
+              lat5: -23.5529814,
+              lng5: -46.58795139999999,
+
+              lat6: -23.6419533,
+              lng6: -46.600155,
+               
               lat7: -23.5078995,
               lng7: -46.58795139999999,
+
               lat8: -23.5078995,
               lng8: -46.58795139999999,
+
               lat9: -23.5078995,
               lng9: -46.58795139999999,
+
               lat10: -23.5078995,
               lng10: -46.58795139999999,
             }
@@ -119,33 +129,52 @@ class IndexMaps extends React.Component {
      
         <Alert />
         <br></br>
+        <form>
+        <div className="form-group">
+        <label htmlFor="cep">Qual seu Cep?</label>
         <input 
+            className="form-control"
             type="text" 
             id="cep" 
             name="cep"
             placeholder="digite seu cep"
             onChange={this.handleChange}
         />
-        <br></br>
+        </div>
+        <div className="form-group">
+        <label htmlFor="numero">E o número?</label>
         <input 
+            className="form-control"
             type="text" 
             name="numero"
             id="numero" 
             placeholder="digite o número"
             onChange={this.handleChange}
         />
-          <br></br>
+        </div>
+        <div className="form-group">
+        <label htmlFor="numero">Seu tipo sanguineo?</label>
         <input 
+            className="form-control"
+            type="text" 
+            name="numero"
+            id="numero" 
+            placeholder="digite o número"
+            onChange={this.handleChange}
+        />
+        </div>
+        <input 
+           className="btn btn-primary btn-round float-right"
             type="button"
             value="buscar"
             onClick={this.buscar}
         />
-             
-          </div>
-          </div>
-          </Col>
-          </Row>
-          </Container>
+        </form>
+        </div>
+        </div>
+        </Col>
+        </Row>
+        </Container>
     </>
     );
     }

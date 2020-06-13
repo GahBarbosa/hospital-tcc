@@ -35,7 +35,7 @@ function Faq() {
           <Card id="medicamentos" className="no-transition">
           <h5>Uso de medicamentos</h5>
             <CardHeader className="card-collapse" id="headingOne" role="tab">
-              <Button className="mb-0 panel-title" color="primary">
+              <Button className="mb-0 panel-title" color="danger">
                 <a
                   aria-expanded={collapses.includes(1)}
                   className="collapsed"
@@ -63,7 +63,7 @@ function Faq() {
 
 
             <CardHeader className="card-collapse" id="headingTwo" role="tab">
-              <Button className="mb-0 panel-title" color="primary">
+              <Button className="mb-0 panel-title" color="danger">
                 <a
                   aria-controls="collapseTwo"
                   aria-expanded={collapses.includes(2)}
@@ -93,7 +93,7 @@ function Faq() {
               id="headingThree"
               role="tab"
             >
-              <Button className="mb-0 panel-title" color="primary">
+              <Button className="mb-0 panel-title" color="danger">
                 <a
                   aria-controls="collapseThree"
                   aria-expanded={collapses.includes(3)}
@@ -122,7 +122,7 @@ function Faq() {
               id="headingThree"
               role="tab"
             >
-              <Button className="mb-0 panel-title" color="primary">
+              <Button className="mb-0 panel-title" color="danger">
                 <a
                   aria-controls="collapseThree"
                   aria-expanded={collapses.includes(4)}
@@ -163,7 +163,7 @@ function Faq() {
               id="headingThree"
               role="tab"
             >
-              <Button className="mb-0 panel-title" color="primary">
+              <Button className="mb-0 panel-title" color="danger">
                 <a
                   aria-controls="collapseThree"
                   aria-expanded={collapses.includes(5)}
@@ -192,7 +192,7 @@ function Faq() {
               id="headingThree"
               role="tab"
             >
-              <Button className="mb-0 panel-title" color="primary">
+              <Button className="mb-0 panel-title" color="danger">
                 <a
                   aria-controls="collapseThree"
                   aria-expanded={collapses.includes(6)}
@@ -221,7 +221,7 @@ function Faq() {
               id="headingThree"
               role="tab"
             >
-              <Button className="mb-0 panel-title" color="primary">
+              <Button className="mb-0 panel-title" color="danger">
                 <a
                   aria-controls="collapseThree"
                   aria-expanded={collapses.includes(7)}
@@ -255,7 +255,7 @@ function Faq() {
           <Card  id="instuicao" className="no-transition">
             <h5>Sobre a Instituição</h5>
             <CardHeader className="card-collapse" id="headingOne" role="tab">
-              <Button className="mb-0 panel-title" color="primary ">
+              <Button className="mb-0 panel-title" color="danger ">
                 <a
                   aria-expanded={collapses.includes(8)}
                   className="collapsed"
@@ -279,7 +279,7 @@ function Faq() {
             </Collapse>
 
             <CardHeader className="card-collapse" id="headingOne" role="tab">
-              <Button className="mb-0 panel-title" color="primary ">
+              <Button className="mb-0 panel-title" color="danger ">
                 <a
                   aria-expanded={collapses.includes(9)}
                   className="collapsed"
@@ -302,7 +302,7 @@ function Faq() {
             </Collapse>
 
             <CardHeader className="card-collapse" id="headingOne" role="tab">
-              <Button className="mb-0 panel-title" color="primary ">
+              <Button className="mb-0 panel-title" color="danger ">
                 <a
                   aria-expanded={collapses.includes(10)}
                   className="collapsed"
@@ -325,7 +325,7 @@ function Faq() {
             </Collapse>
 
             <CardHeader className="card-collapse" id="headingOne" role="tab">
-              <Button className="mb-0 panel-title" color="primary ">
+              <Button className="mb-0 panel-title" color="danger ">
                 <a
                   aria-expanded={collapses.includes(11)}
                   className="collapsed"
@@ -348,7 +348,7 @@ function Faq() {
             </Collapse>
 
             <CardHeader className="card-collapse" id="headingOne" role="tab">
-              <Button className="mb-0 panel-title" color="primary ">
+              <Button className="mb-0 panel-title" color="danger ">
                 <a
                   aria-expanded={collapses.includes(12)}
                   className="collapsed"
@@ -371,7 +371,7 @@ function Faq() {
             </Collapse>
             
                <CardHeader className="card-collapse" id="headingOne" role="tab">
-              <Button className="mb-0 panel-title" color="primary ">
+              <Button className="mb-0 panel-title" color="danger ">
                 <a
                   aria-expanded={collapses.includes(13)}
                   className="collapsed"
@@ -394,7 +394,7 @@ function Faq() {
             </Collapse>
 
             <CardHeader className="card-collapse" id="headingOne" role="tab">
-              <Button className="mb-0 panel-title" color="primary ">
+              <Button className="mb-0 panel-title" color="danger ">
                 <a
                   aria-expanded={collapses.includes(14)}
                   className="collapsed"
@@ -427,7 +427,7 @@ function Faq() {
           <Card  id="requisitos" className="no-transition">
             <h5>Requisitos básicos</h5>
             <CardHeader className="card-collapse" id="headingOne" role="tab">
-              <Button className="mb-0 panel-title" color="primary ">
+              <Button className="mb-0 panel-title" color="danger ">
                 <a
                   aria-expanded={collapses.includes(15)}
                   className="collapsed"
@@ -451,7 +451,7 @@ function Faq() {
             </Collapse>
 
             <CardHeader className="card-collapse" id="headingOne" role="tab">
-              <Button className="mb-0 panel-title" color="primary ">
+              <Button className="mb-0 panel-title" color="danger ">
                 <a
                   aria-expanded={collapses.includes(16)}
                   className="collapsed"
@@ -474,7 +474,7 @@ function Faq() {
             </Collapse>
 
             <CardHeader className="card-collapse" id="headingOne" role="tab">
-              <Button className="mb-0 panel-title" color="primary ">
+              <Button className="mb-0 panel-title" color="danger ">
                 <a
                   aria-expanded={collapses.includes(17)}
                   className="collapsed"
@@ -497,7 +497,7 @@ function Faq() {
             </Collapse>
 
             <CardHeader className="card-collapse" id="headingOne" role="tab">
-              <Button className="mb-0 panel-title" color="primary ">
+              <Button className="mb-0 panel-title" color="danger ">
                 <a
                   aria-expanded={collapses.includes(18)}
                   className="collapsed"
@@ -528,7 +528,7 @@ function Faq() {
           <Card  id="posdoacao" className="no-transition">
             <h5>Pós Doação</h5>
             <CardHeader className="card-collapse" id="headingOne" role="tab">
-              <Button className="mb-0 panel-title" color="primary ">
+              <Button className="mb-0 panel-title" color="danger ">
                 <a
                   aria-expanded={collapses.includes(19)}
                   className="collapsed"
@@ -552,7 +552,7 @@ function Faq() {
             </Collapse>
 
             <CardHeader className="card-collapse" id="headingOne" role="tab">
-              <Button className="mb-0 panel-title" color="primary ">
+              <Button className="mb-0 panel-title" color="danger ">
                 <a
                   aria-expanded={collapses.includes(20)}
                   className="collapsed"
@@ -575,7 +575,7 @@ function Faq() {
             </Collapse>
 
             <CardHeader className="card-collapse" id="headingOne" role="tab">
-              <Button className="mb-0 panel-title" color="primary ">
+              <Button className="mb-0 panel-title" color="danger ">
                 <a
                   aria-expanded={collapses.includes(21)}
                   className="collapsed"

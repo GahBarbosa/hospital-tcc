@@ -1,7 +1,18 @@
 import React, { Component } from 'react';
 import GoogleMapReact from 'google-map-react';
-import { Container, Row, Col } from "reactstrap";
-
+import {
+  Card,
+  CardHeader,
+  CardBody,
+  NavItem,
+  NavLink,
+  Nav,
+  TabContent,
+  TabPane,
+  Container,
+  Row,
+  Col
+} from "reactstrap";
 const K_WIDTH = 40;
 
 const Style = {
@@ -49,10 +60,11 @@ class Mapa extends Component {
       lng:1,
       nome:'',
       endereco:'',
+      setIconPills:"1",
+      setPills:"1",
       }
   }
   componentDidMount(){
-    console.log('mapa',this.props.location)
     this.setState({
       lat:this.props.location.state.lat,  
       lng:this.props.location.state.lng,
@@ -80,6 +92,8 @@ class Mapa extends Component {
       lng10:this.props.location.state.lng10,
     })
   }
+
+  
  
   buscar = () => {
     console.log(this.state.lat,this.state.lng)
@@ -88,12 +102,30 @@ class Mapa extends Component {
 
   handleHover = (event) => {
     let element = document.getElementById(event.target.id)
+    let id = event.target.id;
     let nome = element.getAttribute("nome")
     let endereco = element.getAttribute("endereco")
-    this.setState({
-      nome:nome,
-      endereco: endereco
-    })
+    if(id <= 5){
+      this.setState({
+        nome: nome,
+        endereco: endereco,
+        setIconPills: id
+      })
+    } else {
+      this.setState({
+        nome2:nome,
+        endereco2: endereco,
+        setPills: id
+      })
+    }
+  };
+
+  handleHover2 = (event) => {
+    let element = document.getElementById(event.target.id)
+    let nome = element.getAttribute("nome")
+    let endereco = element.getAttribute("endereco")
+  
+   
   };
 
   handleClick = (event) => {
@@ -125,22 +157,11 @@ class Mapa extends Component {
     //     });
     // };
 
-
     return (
       <Container>
       <Row>
-        <Col>
-          <div >
-          <input 
-            type="button"
-            value="buscar"
-            onClick={this.buscar}
-            onMouseEnter={this.someHandler}
-          />
-          <h1>{this.state.nome}</h1>
-          <h1>{this.state.endereco}</h1>
-          </div>
-          
+      <Col className="ml-auto mr-auto" md="10" xl="6">
+        <Tabs {...this.state} />
         </Col>
         <Col>
       <div style={{ height: '100vh', width: '100%' }}>
@@ -163,7 +184,7 @@ class Mapa extends Component {
           <div
             onMouseEnter={this.handleHover}
             onMouseDown={this.handleClick}
-            id="hospital1"
+            id="1"
             lat={this.state.lat1}
             lng={this.state.lng1}
             style={style}
@@ -173,7 +194,7 @@ class Mapa extends Component {
           <div
             onMouseEnter={this.handleHover}
             onMouseDown={this.handleClick}
-            id="hospital2"
+            id="2"
             lat={this.state.lat2}
             lng={this.state.lng2}
             style={style}
@@ -183,31 +204,43 @@ class Mapa extends Component {
           <div
             onMouseEnter={this.handleHover}
             onMouseDown={this.handleClick}
-            id="hospital3"
+            id="3"
             lat={this.state.lat3}
             lng={this.state.lng3}
             style={style}
             nome = ' hospital 3 '
             endereco = 'rua xxxxx 3'
           />
-             {/* <div onMouseEnter={this.someHandler}
-            id="hospital4"
+             <div
+            onMouseEnter={this.handleHover}
+            onMouseDown={this.handleClick}
+            id="4"
             lat={this.state.lat4}
             lng={this.state.lng4}
             style={style}
-          /> */}
-            {/* <div
-              id="hospital5"
-              lat={this.state.lat5}
-              lng={this.state.lng5}
-              style={style}
-            /> */}
-              {/* <div onMouseEnter={this.someHandler}
-            id="hospital6"
+            nome = ' hospital 4 '
+            endereco = 'rua xxxxx 4'
+          />
+           <div
+            onMouseEnter={this.handleHover}
+            onMouseDown={this.handleClick}
+            id="5"
+            lat={this.state.lat5}
+            lng={this.state.lng5}
+            style={style}
+            nome = ' hospital 5 '
+            endereco = 'rua xxxxx 5'
+          />
+          <div
+            onMouseEnter={this.handleHover}
+            onMouseDown={this.handleClick}
+            id="6"
             lat={this.state.lat6}
             lng={this.state.lng6}
             style={style}
-          /> */}
+            nome = ' hospital 6 '
+            endereco = 'rua xxxxx 6'
+          />
              {/* <div onMouseEnter={this.someHandler}
             id="hospital7"
             lat={this.state.lat7}
@@ -239,6 +272,267 @@ class Mapa extends Component {
       </Container>
     );
   }
+}
+
+function Tabs(props){
+  
+  const [iconPills, setIconPills] = React.useState("1");
+  const [pills, setPills] = React.useState("1");
+  
+
+  return (
+  <>
+  <Container>
+  <Row>
+  <p className="category">Hospitais com mais necessidades do seu tipo de sangue tamo precisando</p>
+  <Card>
+    <CardHeader>
+      <Nav className="justify-content-center" role="tablist" tabs>
+
+        <NavItem>
+          <NavLink
+            className={iconPills === "1" ? "active" : ""}
+            href="#pablo"
+            onClick={e => {
+              e.preventDefault();
+              setIconPills("1");
+            }}
+            >
+            hospital 1
+          </NavLink>
+        </NavItem>
+
+        <NavItem>
+          <NavLink
+            className={iconPills === "2" ? "active" : ""}
+            href="#pablo"
+            onClick={e => {
+              e.preventDefault();
+              setIconPills("2");
+            }}
+            >
+           hospital 2
+          </NavLink>
+        </NavItem>
+
+        <NavItem>
+          <NavLink
+            className={iconPills === "3" ? "active" : ""}
+            href="#pablo"
+            onClick={e => {
+              e.preventDefault();
+              setIconPills("3");
+            }}
+            >
+           hospital 3 
+          </NavLink>
+        </NavItem>
+
+        <NavItem>
+          <NavLink
+            className={iconPills === "4" ? "active" : ""}
+            href="#pablo"
+            onClick={e => {
+              e.preventDefault();
+              setIconPills("4");
+            }}
+            >
+             hospital 4
+          </NavLink>
+        </NavItem>
+
+        <NavItem>
+          <NavLink
+            className={iconPills === "5" ? "active" : ""}
+            href="#pablo"
+            onClick={e => {
+              e.preventDefault();
+              setIconPills("5");
+            }}
+            >
+               hospital 5
+          </NavLink>
+        </NavItem>
+        
+      </Nav>
+    </CardHeader>
+
+    <CardBody>
+      <TabContent
+        className="text-center"
+        activeTab={"iconPills" + iconPills}
+      >
+
+      <TabPane tabId="iconPills1">
+        <p>
+         rua do hospital numero 1
+         telefone 5498465468
+         quantidade de sangue 
+        </p>
+      </TabPane>
+
+      <TabPane tabId="iconPills2">
+        <p>
+        rua do hospital numero 2
+         telefone 5498465468
+         quantidade de sangue
+        </p>
+      </TabPane>
+
+      <TabPane tabId="iconPills3">
+        <p>
+        rua do hospital numero 3
+         telefone 5498465468
+         quantidade de sangue
+        </p>
+      </TabPane>
+
+      <TabPane tabId="iconPills4">
+        <p>
+        rua do hospital numero 4
+         telefone 5498465468
+         quantidade de sangue
+        </p>
+      </TabPane>
+
+      <TabPane tabId="iconPills5">
+        <p>
+        rua do hospital numero 5
+         telefone 5498465468
+         quantidade de sangue
+        </p>
+      </TabPane>
+
+      </TabContent>
+    </CardBody>
+  </Card>
+  </Row>
+
+    <Row>
+    <p className="category">Mas se for muito longe doa nesses aqui mesmo</p>
+              <Card>
+                <CardHeader>
+                  <Nav
+                    className="nav-tabs-neutral justify-content-center"
+                    data-background-color="blue"
+                    role="tablist"
+                    tabs
+                  >
+
+                    <NavItem>
+                      <NavLink
+                        className={pills === "1" ? "active" : ""}
+                        href="#pablo"
+                        onClick={e => {
+                          e.preventDefault();
+                          setPills("1");
+                        }}
+                      >
+                        Hospital 1
+                      </NavLink>
+                    </NavItem>
+
+                    <NavItem>
+                      <NavLink
+                        className={pills === "2" ? "active" : ""}
+                        href="#pablo"
+                        onClick={e => {
+                          e.preventDefault();
+                          setPills("2");
+                        }}
+                      >
+                         Hospital 2
+                      </NavLink>
+                    </NavItem>
+
+                    <NavItem>
+                      <NavLink
+                        className={pills === "3" ? "active" : ""}
+                        href="#pablo"
+                        onClick={e => {
+                          e.preventDefault();
+                          setPills("3");
+                        }}
+                      >
+                         Hospital 3
+                      </NavLink>
+                    </NavItem>
+
+                    <NavItem>
+                      <NavLink
+                        className={pills === "4" ? "active" : ""}
+                        href="#pablo"
+                        onClick={e => {
+                          e.preventDefault();
+                          setPills("4");
+                        }}
+                      >
+                        Hospital 4
+                      </NavLink>
+                    </NavItem>
+
+                    <NavItem>
+                      <NavLink
+                        className={pills === "5" ? "active" : ""}
+                        href="#pablo"
+                        onClick={e => {
+                          e.preventDefault();
+                          setPills("5");
+                        }}
+                      >
+                        Hospital 5
+                      </NavLink>
+                    </NavItem>
+
+                  </Nav>
+                </CardHeader>
+                <CardBody>
+                  <TabContent
+                    className="text-center"
+                    activeTab={"pills" + pills}
+                  >
+                    <TabPane tabId="pills1">
+                      <p>
+                      rua do hospital numero 5
+                      telefone 5498465468
+                      quantidade de sangue
+                      </p>
+                    </TabPane>
+                    <TabPane tabId="pills2">
+                      <p>
+                      rua do hospital numero 5
+                      telefone 5498465468
+                      quantidade de sangue
+                      </p>
+                    </TabPane>
+                    <TabPane tabId="pills3">
+                      <p>
+                      rua do hospital numero 5
+                      telefone 5498465468
+                      quantidade de sangue
+                      </p>
+                    </TabPane>
+                    <TabPane tabId="pills4">
+                      <p>
+                      rua do hospital numero 5
+                      telefone 5498465468
+                      quantidade de sangue
+                      </p>
+                    </TabPane>
+                    <TabPane tabId="pills5">
+                      <p>
+                      rua do hospital numero 5
+                      telefone 5498465468
+                      quantidade de sangue
+                      </p>
+                    </TabPane>
+                  </TabContent>
+                </CardBody>
+              </Card>
+    </Row>
+  </Container>
+  </>
+  );
 }
  
 export default Mapa;

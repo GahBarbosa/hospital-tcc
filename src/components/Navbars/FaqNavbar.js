@@ -50,7 +50,7 @@ function FaqNavbar() {
               href="/"
               id="navbar-brand"
             >
-              Home
+             <i class="fas fa-arrow-left"></i>
             </NavbarBrand>
             <button
               className="navbar-toggler navbar-toggler"
