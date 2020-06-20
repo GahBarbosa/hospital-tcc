@@ -10,11 +10,11 @@ function Texto() {
     <>
       <div className="section">
       <Container>
-          <h3 className="title">O que é o projeto Rubi?</h3>
+          <h3 className="title">O que é o projeto Ruby?</h3>
           <div id="texto">
                 <div>
                   <p>
-                  RUBI é um projeto desenvolvido por um grupo de 
+                  RUBY é um projeto desenvolvido por um grupo de 
                   alunos da Fatec Ipiranga, a ideia surgiu 
                   visto a necessidade de uma ferramenta que pudesse 
                   prover ao mesmo tempo um auxilio para as instituições

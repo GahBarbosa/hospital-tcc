@@ -23,7 +23,9 @@ class User extends React.Component {
           referencia:'asd',
           senha:  '',
           confirmaSenha:'',
-          id:''
+          id:'',
+          existeEmail: '',
+          cnpj:'',
         }
     }
 
@@ -87,6 +89,7 @@ class User extends React.Component {
                 referencia: this.state.referencia,
                 usuario : this.state.usuario,
                 senha : this.state.senha,
+                cnpj: this.state.cnpj,
             }),
              
             // Adding headers to the request
@@ -104,7 +107,7 @@ class User extends React.Component {
     handleForget = event => {
         event.preventDefault()
 
-        fetch('http://localhost:5000/esqueciSenha/'+this.state.email, {
+        fetch('http://localhost:5000/esqueciSenha/', {
             method : 'post',
             headers :{ 'Content-Type' : 'application/json'},
             body : JSON.stringify({
@@ -117,9 +120,17 @@ class User extends React.Component {
             }
         }).then(response => response.json())
           .then(data => {
-            this.setState({
-                metodo: 'mensagemforget'
-              })
+            if(data === 'email invalido'){
+                this.setState({
+                    metodo: 'mensagemforget',
+                    existeEmail: false,
+                })
+            } else {
+                this.setState({
+                    metodo: 'mensagemforget',
+                    existeEmail: true,
+                })
+            }
           })
     }
     
@@ -129,7 +140,7 @@ class User extends React.Component {
                   {this.renderRedirect()}
             <Button className="btn-round" color="primary" outline>
                 <a href="/">
-                    <i class="fas fa-arrow-left"></i>
+                    <i className="fas fa-arrow-left"></i>
                 </a>
             </Button>
             <Row>
@@ -159,6 +170,7 @@ class User extends React.Component {
             </form>
             <form className="form-signin">
             <MensagemEsqueceu 
+                existeEmail={this.state.existeEmail}
                 metodo={this.state.metodo}
                 setMetodo={this.setMetodo}
             />
@@ -303,6 +315,19 @@ function Cadastrar(props) {
         <div className="form-label-group">
         <input 
             type="text"
+            id="inputCNPJ" 
+            className="form-control" 
+            name="cnpj" 
+            placeholder="40028922" 
+            value={props.cnpj} 
+            onChange={props.handleChange}
+            required />
+        <label htmlFor="inputCNPJ">CNPJ</label>
+        </div>
+
+        <div className="form-label-group">
+        <input 
+            type="text"
             id="inputCep" 
             className="form-control" 
             name="cep" 
@@ -419,18 +444,31 @@ function MensagemEsqueceu (props){
     if (props.metodo != 'mensagemforget') {
         return null
     }
-   
-    return (
-        <>
-        <h5 className="card-title text-center">Recuperar Senha</h5>
-        <div className="form-label-group">
-            <h3>Sua senha foi enviada com sucesso para seu e-mail, tente logar novamente. 
-                Obrigado !  
-            </h3>        
-        </div>
-        <button className="btn btn-lg btn-primary btn-block" onClick={props.setMetodo.bind(this,'login')}>Ok</button>
-        </>
-    );
+    if (props.existeEmail == true){
+        return (
+            <>
+            <h5 className="card-title text-center">Recuperar Senha</h5>
+            <div className="form-label-group">
+                <h3>Sua senha foi enviada com sucesso para seu e-mail, tente logar novamente. 
+                    Obrigado !  
+                </h3>        
+            </div>
+            <button className="btn btn-lg btn-primary btn-block" onClick={props.setMetodo.bind(this,'login')}>Ok</button>
+            </>
+        );
+    } else {
+        return (
+            <>
+            <h5 className="card-title text-center">Recuperar Senha</h5>
+            <div className="form-label-group">
+                <h3>
+                    Este email não está cadastrado no nosso sistema! 
+                </h3>        
+            </div>
+            <button className="btn btn-lg btn-primary btn-block" onClick={props.setMetodo.bind(this,'login')}>Ok</button>
+            </>
+        );
+    }
 }
 
 export default User;

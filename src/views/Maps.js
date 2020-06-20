@@ -35,13 +35,6 @@ const Style = {
   cursor: 'pointer'
 };
 
-const StyleHover = {
-  ...Style,
-  border: '5px solid #3f51b5',
-  color: '#f44336'
-};
-
-
 class Mapa extends Component {
   
   static defaultProps = {
@@ -49,7 +42,8 @@ class Mapa extends Component {
       lat: -23.618237,
       lng: -46.635197
     },
-    zoom: 15
+    zoom: 15,
+  
   };
  
   
@@ -61,7 +55,8 @@ class Mapa extends Component {
       nome:'',
       endereco:'',
       setIconPills:"1",
-      setPills:"1",
+      setPills:"6",
+      shouldRender:false,
       }
   }
   componentDidMount(){
@@ -93,7 +88,11 @@ class Mapa extends Component {
     })
   }
 
-  
+  handleReRender = () => {
+    this.setState({
+      shouldRender:false
+    })
+  }
  
   buscar = () => {
     console.log(this.state.lat,this.state.lng)
@@ -109,78 +108,78 @@ class Mapa extends Component {
       this.setState({
         nome: nome,
         endereco: endereco,
-        setIconPills: id
+        setIconPills: id,
+        shouldRender:true
       })
     } else {
       this.setState({
         nome2:nome,
         endereco2: endereco,
-        setPills: id
+        setPills: id,
+        shouldRender:true
       })
     }
   };
 
-  handleHover2 = (event) => {
-    let element = document.getElementById(event.target.id)
-    let nome = element.getAttribute("nome")
-    let endereco = element.getAttribute("endereco")
-  
-   
-  };
-
   handleClick = (event) => {
-  
+    this.setState({
+      places : [
+        {latitude: this.state.lat , longitude: this.state.lng},
+        {latitude: event.target.lat , longitude: event.target.lng},
+      ]
+    }) 
+
+    console.log(this.state.places)
   };
 
 
   render() {
-    const style = this.props.$hover ? StyleHover : Style;
-        
-    // const apiIsLoaded = (map,maps) => {
-    //   const directionsService = new maps.DirectionsService();
-    //   const directionsDisplay = new maps.DirectionsRenderer();
-    //   directionsService.route({
-    //     origin: 'Av 565 145, San Juan de Aragón II Secc, 07969 Ciudad de México, CDMX, Mexico',
-    //     destination: 'Piña MZ3 LT8, Ampliacion Lopez Portillo, 13400 Ciudad de México, CDMX, Mexico',
-    //     travelMode: 'DRIVING'
-    //   }, (response, status) => {
-    //     if (status === 'OK') {
-    //       directionsDisplay.setDirections(response);
-    //       console.log(response.routes[0].overview_path, 'Ruta')
-    //       const routePolyline = new google.maps.Polyline({
-    //         path: response.routes[0].overview_path
-    //       });
-    //       routePolyline.setMap(map);
-    //     } else {
-    //       window.alert('Directions request failed due to ' + status);
-    //       }
-    //     });
-    // };
-
+    const style = Style;
+    const apiIsLoaded = (map,maps) => {
+      const directionsService = new maps.DirectionsService();
+      const directionsDisplay = new maps.DirectionsRenderer();
+      directionsService.route({
+        origin: 'Av 565 145, San Juan de Aragón II Secc, 07969 Ciudad de México, CDMX, Mexico',
+        destination: 'Piña MZ3 LT8, Ampliacion Lopez Portillo, 13400 Ciudad de México, CDMX, Mexico',
+        travelMode: 'DRIVING'
+      }, (response, status) => {
+        if (status === 'OK') {
+          directionsDisplay.setDirections(response);
+          console.log(response.routes[0].overview_path, 'Ruta')
+          const routePolyline = new google.maps.Polyline({
+            path: response.routes[0].overview_path
+          });
+          routePolyline.setMap(map);
+        } else {
+          window.alert('Directions request failed due to ' + status);
+          }
+        });
+  };
     return (
       <Container>
       <Row>
       <Col className="ml-auto mr-auto" md="10" xl="6">
-        <Tabs {...this.state} />
+        <Tabs handler={this.handleReRender} {...this.state} />
         </Col>
         <Col>
       <div style={{ height: '100vh', width: '100%' }}>
         <GoogleMapReact
           bootstrapURLKeys={{ key:"AIzaSyBm5xD22Qaw9aSERJeKRQymyv9LB6dwhRk" }}
           defaultCenter= {{
-            lat:this.state.lat,
+            lat: this.state.lat,
             lng: this.state.lng
           }}
           defaultZoom={this.props.zoom}
-          // yesIWantToUseGoogleMapApiInternals
-          // onGoogleApiLoaded={({ map, maps }) => apiIsLoaded(map, maps)}
+          yesIWantToUseGoogleMapApiInternals 
+          onGoogleApiLoaded={({ map, maps }) => apiIsLoaded(map, maps)}
         >
           <div
             id="usuario"
             lat={this.state.latUsuario}
             lng={this.state.lngUsuario}
             style={style}
-          > Você</div>
+          > 
+          Você</div>
           <div
             onMouseEnter={this.handleHover}
             onMouseDown={this.handleClick}
@@ -190,7 +189,7 @@ class Mapa extends Component {
             style={style}
             nome="hospital 1 nome"
             endereco='rua xxxxxxx 0'
-          />
+          ><i class="fas fa-hospital-alt"></i></div>
           <div
             onMouseEnter={this.handleHover}
             onMouseDown={this.handleClick}
@@ -200,7 +199,7 @@ class Mapa extends Component {
             style={style}
             nome = ' hospital 2'
             endereco = 'rua  xxxx 3'
-          />
+          ><i class="fas fa-hospital-alt"></i></div>
           <div
             onMouseEnter={this.handleHover}
             onMouseDown={this.handleClick}
@@ -210,7 +209,7 @@ class Mapa extends Component {
             style={style}
             nome = ' hospital 3 '
             endereco = 'rua xxxxx 3'
-          />
+            ><i class="fas fa-hospital-alt"></i></div>
              <div
             onMouseEnter={this.handleHover}
             onMouseDown={this.handleClick}
@@ -220,7 +219,7 @@ class Mapa extends Component {
             style={style}
             nome = ' hospital 4 '
             endereco = 'rua xxxxx 4'
-          />
+            ><i class="fas fa-hospital-alt"></i></div>
            <div
             onMouseEnter={this.handleHover}
             onMouseDown={this.handleClick}
@@ -230,7 +229,7 @@ class Mapa extends Component {
             style={style}
             nome = ' hospital 5 '
             endereco = 'rua xxxxx 5'
-          />
+            ><i class="fas fa-hospital-alt"></i></div>
           <div
             onMouseEnter={this.handleHover}
             onMouseDown={this.handleClick}
@@ -240,31 +239,35 @@ class Mapa extends Component {
             style={style}
             nome = ' hospital 6 '
             endereco = 'rua xxxxx 6'
-          />
-             {/* <div onMouseEnter={this.someHandler}
-            id="hospital7"
+            ><i class="fas fa-hospital-alt"></i></div>
+           <div
+            onMouseEnter={this.handleHover}
+            onMouseDown={this.handleClick}
+            id="7"
             lat={this.state.lat7}
             lng={this.state.lng7}
             style={style}
-          /> */}
+            nome = ' hospital 7 '
+            endereco = 'rua xxxxx 7'
+            ><i class="fas fa-hospital-alt"></i></div>
               {/* <div onMouseEnter={this.someHandler}
             id="hospital8"
             lat={this.state.lat8}
             lng={this.state.lng8}
             style={style}
-          /> */}
+          ><i class="fas fa-hospital-alt"></i></div> */}
            {/* <div onMouseEnter={this.someHandler}
             id="hospital9"
             lat={this.state.lat9}
             lng={this.state.lng9}
             style={style}
-          /> */}
+          ><i class="fas fa-hospital-alt"></i></div> */}
             {/* <div onMouseEnter={this.someHandler}
             id="hospital10"
             lat={this.state.lat10}
             lng={this.state.lng10}
             style={style}
-          /> */}
+          ><i class="fas fa-hospital-alt"></i></div> */}
         </GoogleMapReact>
       </div>
       </Col>
@@ -276,10 +279,8 @@ class Mapa extends Component {
 
 function Tabs(props){
   
-  const [iconPills, setIconPills] = React.useState("1");
-  const [pills, setPills] = React.useState("1");
-  
-
+  let iconPills = props.setIconPills;
+  let pills = props.setPills;
   return (
   <>
   <Container>
@@ -292,11 +293,6 @@ function Tabs(props){
         <NavItem>
           <NavLink
             className={iconPills === "1" ? "active" : ""}
-            href="#pablo"
-            onClick={e => {
-              e.preventDefault();
-              setIconPills("1");
-            }}
             >
             hospital 1
           </NavLink>
@@ -305,11 +301,6 @@ function Tabs(props){
         <NavItem>
           <NavLink
             className={iconPills === "2" ? "active" : ""}
-            href="#pablo"
-            onClick={e => {
-              e.preventDefault();
-              setIconPills("2");
-            }}
             >
            hospital 2
           </NavLink>
@@ -318,11 +309,6 @@ function Tabs(props){
         <NavItem>
           <NavLink
             className={iconPills === "3" ? "active" : ""}
-            href="#pablo"
-            onClick={e => {
-              e.preventDefault();
-              setIconPills("3");
-            }}
             >
            hospital 3 
           </NavLink>
@@ -331,11 +317,6 @@ function Tabs(props){
         <NavItem>
           <NavLink
             className={iconPills === "4" ? "active" : ""}
-            href="#pablo"
-            onClick={e => {
-              e.preventDefault();
-              setIconPills("4");
-            }}
             >
              hospital 4
           </NavLink>
@@ -344,11 +325,6 @@ function Tabs(props){
         <NavItem>
           <NavLink
             className={iconPills === "5" ? "active" : ""}
-            href="#pablo"
-            onClick={e => {
-              e.preventDefault();
-              setIconPills("5");
-            }}
             >
                hospital 5
           </NavLink>
@@ -421,12 +397,7 @@ function Tabs(props){
 
                     <NavItem>
                       <NavLink
-                        className={pills === "1" ? "active" : ""}
-                        href="#pablo"
-                        onClick={e => {
-                          e.preventDefault();
-                          setPills("1");
-                        }}
+                        className={pills === "6" ? "active" : ""}
                       >
                         Hospital 1
                       </NavLink>
@@ -434,12 +405,7 @@ function Tabs(props){
 
                     <NavItem>
                       <NavLink
-                        className={pills === "2" ? "active" : ""}
-                        href="#pablo"
-                        onClick={e => {
-                          e.preventDefault();
-                          setPills("2");
-                        }}
+                        className={pills === "7" ? "active" : ""}
                       >
                          Hospital 2
                       </NavLink>
@@ -447,12 +413,7 @@ function Tabs(props){
 
                     <NavItem>
                       <NavLink
-                        className={pills === "3" ? "active" : ""}
-                        href="#pablo"
-                        onClick={e => {
-                          e.preventDefault();
-                          setPills("3");
-                        }}
+                        className={pills === "8" ? "active" : ""}
                       >
                          Hospital 3
                       </NavLink>
@@ -460,12 +421,7 @@ function Tabs(props){
 
                     <NavItem>
                       <NavLink
-                        className={pills === "4" ? "active" : ""}
-                        href="#pablo"
-                        onClick={e => {
-                          e.preventDefault();
-                          setPills("4");
-                        }}
+                        className={pills === "9" ? "active" : ""}
                       >
                         Hospital 4
                       </NavLink>
@@ -473,12 +429,7 @@ function Tabs(props){
 
                     <NavItem>
                       <NavLink
-                        className={pills === "5" ? "active" : ""}
-                        href="#pablo"
-                        onClick={e => {
-                          e.preventDefault();
-                          setPills("5");
-                        }}
+                        className={pills === "10" ? "active" : ""}
                       >
                         Hospital 5
                       </NavLink>
@@ -491,35 +442,35 @@ function Tabs(props){
                     className="text-center"
                     activeTab={"pills" + pills}
                   >
-                    <TabPane tabId="pills1">
+                    <TabPane tabId="pills6">
                       <p>
                       rua do hospital numero 5
                       telefone 5498465468
                       quantidade de sangue
                       </p>
                     </TabPane>
-                    <TabPane tabId="pills2">
+                    <TabPane tabId="pills7">
                       <p>
                       rua do hospital numero 5
                       telefone 5498465468
                       quantidade de sangue
                       </p>
                     </TabPane>
-                    <TabPane tabId="pills3">
+                    <TabPane tabId="pills8">
                       <p>
                       rua do hospital numero 5
                       telefone 5498465468
                       quantidade de sangue
                       </p>
                     </TabPane>
-                    <TabPane tabId="pills4">
+                    <TabPane tabId="pills9">
                       <p>
                       rua do hospital numero 5
                       telefone 5498465468
                       quantidade de sangue
                       </p>
                     </TabPane>
-                    <TabPane tabId="pills5">
+                    <TabPane tabId="pills10">
                       <p>
                       rua do hospital numero 5
                       telefone 5498465468

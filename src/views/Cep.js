@@ -1,6 +1,6 @@
 import React from "react";
 import { Redirect } from "react-router-dom";
-import { Container, Row, Col } from "reactstrap";
+import { Container, Row, Col, Input } from "reactstrap";
 import style from '../assets/css/style.css';
 import { alertService } from '../components/Alert/Services';
 import { Alert } from '../components/Alert';
@@ -154,14 +154,16 @@ class IndexMaps extends React.Component {
         </div>
         <div className="form-group">
         <label htmlFor="numero">Seu tipo sanguineo?</label>
-        <input 
-            className="form-control"
-            type="text" 
-            name="numero"
-            id="numero" 
-            placeholder="digite o número"
-            onChange={this.handleChange}
-        />
+        <Input type="select">
+        <option>A+</option>
+        <option>A-</option>
+        <option>B+</option>
+        <option>B-</option>
+        <option>AB+</option>
+        <option>AB-</option>
+        <option>O+</option>
+        <option>O-</option>
+        </Input>
         </div>
         <input 
            className="btn btn-primary btn-round float-right"

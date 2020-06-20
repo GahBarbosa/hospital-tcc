@@ -50,7 +50,7 @@ function IndexNavbar() {
               href=""
               id="navbar-brand"
             >
-              Projeto Rubi
+              Projeto Ruby
             </NavbarBrand>
             <button
               className="navbar-toggler navbar-toggler"

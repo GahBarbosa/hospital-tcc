@@ -35,8 +35,7 @@ function IndexHeader() {
               className="n-logo"
               src={require("assets/img/rubi-logo.png")}
             ></img>
-            <h1 className="h1-seo">Projeto Rubi</h1>
-            <h3>lorem ipsum lorem lorem</h3>
+            <h1 className="h1-seo">Projeto Ruby</h1>
           </div>
         </Container>
       </div>
